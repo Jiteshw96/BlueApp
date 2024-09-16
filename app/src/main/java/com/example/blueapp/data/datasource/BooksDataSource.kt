@@ -1,5 +1,6 @@
 package com.example.blueapp.data.datasource
 
+import com.example.blueapp.R
 import com.example.blueapp.data.model.Book
 import com.example.blueapp.data.model.Genre
 
@@ -290,11 +291,11 @@ object BooksDataSource {
 
 
     val genreList = listOf(
-        Genre(genreName = "Fiction", books = fictionBooks),
-        Genre(genreName = "Science Fiction", books = scienceFictionBooks),
-        Genre(genreName = "Fantasy", books = fantasyBooks),
-        Genre(genreName = "Mystery", books = mysteryBooks),
-        Genre(genreName = "Non-Fiction", books = nonFictionBooks),
-        Genre(genreName = "Horror", books = horrorBooks)
+        Genre(genreName = "Fiction",coverImage = R.drawable.ic_launcher_background, books = fictionBooks),
+        Genre(genreName = "Science Fiction",coverImage = R.drawable.ic_launcher_background, books = scienceFictionBooks),
+        Genre(genreName = "Fantasy",coverImage = R.drawable.ic_launcher_background, books = fantasyBooks),
+        Genre(genreName = "Mystery",coverImage = R.drawable.ic_launcher_background, books = mysteryBooks),
+        Genre(genreName = "Non-Fiction",coverImage = R.drawable.ic_launcher_background, books = nonFictionBooks),
+        Genre(genreName = "Horror",coverImage = R.drawable.ic_launcher_background, books = horrorBooks)
     )
 }

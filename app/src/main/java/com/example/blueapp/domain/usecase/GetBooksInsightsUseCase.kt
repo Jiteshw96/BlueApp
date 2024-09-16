@@ -1,7 +1,6 @@
 package com.example.blueapp.domain.usecase
 
 import com.example.blueapp.data.model.Genre
-import com.example.blueapp.domain.repository.BooksRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,8 +11,8 @@ class GetBooksInsightsUseCase(
 
     suspend operator fun invoke(
         index: Int,
-        outputItemsCount: Int = 3,
         genreList: List<Genre>,
+        outputItemsCount: Int = 3,
     ): List<Pair<Char, Int>> = withContext(dispatcher) {
         val characterCountMap = genreList[index].books
             .flatMap { it ->
