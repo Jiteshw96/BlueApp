@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 
 
 @Module
@@ -24,7 +25,7 @@ object AppModule {
     }
 
     @Provides
-    fun ProvideGetBooksInsightsUseCase(booksRepository: BooksRepository):GetBooksInsightsUseCase{
-        return GetBooksInsightsUseCase()
+    fun ProvideGetBooksInsightsUseCase():GetBooksInsightsUseCase{
+        return GetBooksInsightsUseCase(Dispatchers.Default)
     }
 }
