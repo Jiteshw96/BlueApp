@@ -4,8 +4,9 @@ import com.example.blueapp.data.datasource.BooksDataSource
 import com.example.blueapp.data.model.Book
 import com.example.blueapp.data.model.Genre
 import com.example.blueapp.domain.repository.BooksRepository
+import javax.inject.Inject
 
-class BooksRepositoryImp() : BooksRepository {
+class BooksRepositoryImp @Inject constructor() : BooksRepository {
 
     override suspend fun fetchBooksCatalogue(): List<Genre> {
             return BooksDataSource.genreList

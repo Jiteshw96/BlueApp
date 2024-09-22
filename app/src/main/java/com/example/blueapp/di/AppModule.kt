@@ -1,9 +1,11 @@
 package com.example.blueapp.di
 
 import com.example.blueapp.data.datasource.BooksDataSource
+import com.example.blueapp.data.repository.BooksRepositoryImp
 import com.example.blueapp.domain.repository.BooksRepository
 import com.example.blueapp.domain.usecase.FetchBooksUseCase
 import com.example.blueapp.domain.usecase.GetBooksInsightsUseCase
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

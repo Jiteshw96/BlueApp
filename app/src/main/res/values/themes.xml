@@ -3,7 +3,31 @@
     <style name="Base.Theme.BlueApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
     <style name="Theme.BlueApp" parent="Base.Theme.BlueApp" />
+
+    <style name="TextAppearance.App.Title" parent="Theme.BlueApp">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.App.Subtitle" parent="Theme.BlueApp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
+
+    <style name="TextAppearance.App.Body" parent="Theme.BlueApp">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.App.Heading" parent="Theme.BlueApp">
+    <item name="android:textSize">18sp</item>
+    </style>
+    
 </resources>

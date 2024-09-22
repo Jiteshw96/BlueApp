@@ -22,12 +22,17 @@ class BooksViewModel @Inject constructor(
 
     init {
         setInitialState()
+        setInitialBottomSheetState()
     }
 
     private val initialState by lazy { setInitialState() }
+    private val initialBottomSheetState by lazy { setInitialBottomSheetState() }
 
     private val _booksScreenState = MutableStateFlow(initialState)
-    val homeScreenState: StateFlow<BooksScreenState> = _booksScreenState
+    val booksScreenState: StateFlow<BooksScreenState> = _booksScreenState
+
+    private val _bottomSheetState = MutableStateFlow(initialBottomSheetState)
+    val bottomSheetState: StateFlow<BottomSheetState> = _bottomSheetState
 
     private val _filterResult = MutableStateFlow<List<Book>>(emptyList())
     val filterResult = _filterResult
@@ -36,8 +41,12 @@ class BooksViewModel @Inject constructor(
         isPageLoading = false,
         isBottomSheetLoading = false,
         genreList = null,
-        bottomSheetData = null,
         error = null,
+    )
+
+    private fun setInitialBottomSheetState() = BottomSheetState(
+        isBottomSheetLoading = false,
+        bottomSheetData = null
     )
 
 
@@ -50,7 +59,6 @@ class BooksViewModel @Inject constructor(
                     _booksScreenState.value = _booksScreenState.value.copy(
                         isPageLoading = false,
                         genreList = response.data,
-                        bottomSheetData = null,
                         error = null
                     )
                 }
@@ -71,7 +79,7 @@ class BooksViewModel @Inject constructor(
     }
 
     fun getBooksInsightsData(currentIndex: Int) {
-        _booksScreenState.value = _booksScreenState.value.copy(isBottomSheetLoading = true)
+        _bottomSheetState.value = _bottomSheetState.value.copy(isBottomSheetLoading = true)
         viewModelScope.launch {
             try {
                 val booksList = _booksScreenState.value.genreList ?: emptyList()
@@ -80,12 +88,13 @@ class BooksViewModel @Inject constructor(
                     genreList = booksList,
                 )
 
-                _booksScreenState.value = _booksScreenState.value.copy(
+                _bottomSheetState.value = _bottomSheetState.value.copy(
                     isBottomSheetLoading = false,
                     bottomSheetData = BooksInsights(booksList.count(), result)
                 )
+
             } catch (exception: Exception) {
-                _booksScreenState.value = _booksScreenState.value.copy(isBottomSheetLoading = false)
+                _bottomSheetState.value = _bottomSheetState.value.copy(isBottomSheetLoading = true)
             }
         }
     }
@@ -97,21 +106,22 @@ class BooksViewModel @Inject constructor(
         }?: emptyList()
     }
 
-    fun getSearchResults(
-        currentIndex: Int,
-        searchQuery:String
-    ){
+    fun fetchFilteredResults(
+        genreIndex: Int,
+        query: String
+    ) {
         viewModelScope.launch {
-            val dynamicSearchQuery = ".*$searchQuery.*"
-            val regex = Regex(dynamicSearchQuery, RegexOption.IGNORE_CASE)
-            val results = if(searchQuery.isNotBlank()){
-                _booksScreenState.value.genreList?.get(currentIndex)?.books?.filter {
-                    it.name.matches(regex)
+            val searchPattern = ".*${query}.*"
+            val searchRegex = Regex(searchPattern, RegexOption.IGNORE_CASE)
+
+            val filteredResults = if (query.isNotEmpty()) {
+                _booksScreenState.value.genreList?.get(genreIndex)?.books?.filter { book ->
+                    searchRegex.containsMatchIn(book.name)
                 }
-            }else{
-                getBooksForSelectedGenre(currentIndex)
+            } else {
+                getBooksForSelectedGenre(genreIndex)
             }
-            _filterResult.emit(results?: emptyList())
+            _filterResult.emit(filteredResults ?: emptyList())
         }
     }
 
