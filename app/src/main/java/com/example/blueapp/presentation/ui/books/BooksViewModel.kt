@@ -93,7 +93,7 @@ class BooksViewModel @Inject constructor(
 
                 _bottomSheetState.value = _bottomSheetState.value.copy(
                     isBottomSheetLoading = false,
-                    bottomSheetData = BooksInsights(booksList.count(), result)
+                    bottomSheetData = BooksInsights(booksList[currentIndex].books.count(), result)
                 )
 
             } catch (exception: Exception) {
