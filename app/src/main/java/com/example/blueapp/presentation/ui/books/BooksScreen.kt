@@ -88,11 +88,10 @@ fun BooksScreen(
                     GenreList(
                         genreList = bookScreenState.genreList ?: emptyList(),
                         booksList = booksList,
-                        searchQuery = booksViewModel.searchQuery.value,
+                        searchQuery = booksViewModel.searchQuery,
                         padding = inset,
                         pagerState = pagerState
                     ) { query ->
-
                         booksViewModel.searchQuery.value = query
                         booksViewModel.fetchFilteredResults(
                             pagerState.currentPage,

@@ -11,10 +11,9 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import com.example.blueapp.R
 import com.example.blueapp.data.model.Book
 import com.example.blueapp.data.model.Genre
@@ -25,15 +24,11 @@ import com.example.blueapp.presentation.theme.LocalCustomColorPalette
 fun GenreList(
     genreList: List<Genre>,
     booksList: List<Book>,
-    searchQuery: String,
+    searchQuery: MutableState<String>,
     padding: PaddingValues,
     pagerState: PagerState,
     onSearch: (String) -> Unit
 ) {
-
-    val configuration = LocalConfiguration.current
-    val screenHeight = configuration.screenHeightDp.dp
-
 
     LazyColumn(
         modifier = Modifier

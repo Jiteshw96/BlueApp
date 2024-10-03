@@ -34,12 +34,12 @@ import com.example.blueapp.presentation.theme.LocalCustomColorPalette
 
 @Composable
 fun SearchInputField(
-    searchQuery: String,
+    searchQuery: MutableState<String>,
     onSearchCallback: (String) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    var inputQuery = remember {
-        mutableStateOf(searchQuery)
+    val inputQuery = remember {
+        derivedStateOf { searchQuery.value }
     }
     Column(
         modifier = Modifier
@@ -50,7 +50,6 @@ fun SearchInputField(
             value = inputQuery.value,
             textStyle = MaterialTheme.typography.titleMedium,
             onValueChange = { input ->
-                inputQuery.value = input
                 onSearchCallback(input)
             },
             modifier = Modifier
@@ -81,7 +80,6 @@ fun SearchInputField(
                         contentDescription = null,
                         modifier = Modifier.clickable {
                             onSearchCallback("")
-                            inputQuery.value = ""
                             keyboardController?.hide()
                         },
                         tint = LocalCustomColorPalette.current.darkGrey
@@ -107,7 +105,7 @@ fun SearchInputField(
 fun SearchInputTextPreview() {
     SearchInputField(
         searchQuery = remember {
-            "Secret"
+            mutableStateOf("Secret")
         },
         onSearchCallback = { },
     )
