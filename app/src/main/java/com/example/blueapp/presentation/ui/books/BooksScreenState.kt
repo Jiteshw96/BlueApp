@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import com.example.blueapp.data.model.Genre
 
 data class BooksScreenState(
-    val isPageLoading:Boolean,
-    val genreList:List<Genre>?,
+    val isPageLoading: Boolean,
+    val genreList: List<Genre>?,
     @StringRes
     val error: Int? = null
 )

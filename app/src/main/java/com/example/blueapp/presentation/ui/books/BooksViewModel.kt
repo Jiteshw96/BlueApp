@@ -77,8 +77,8 @@ class BooksViewModel @Inject constructor(
         }
     }
 
-    fun getBooksForSelectedGenre(index:Int):List<Book>{
-        return _booksScreenState.value.genreList?.get(index)?.books?: emptyList()
+    fun getBooksForSelectedGenre(index: Int): List<Book> {
+        return _booksScreenState.value.genreList?.get(index)?.books ?: emptyList()
     }
 
     fun getBooksInsightsData(currentIndex: Int) {
@@ -103,10 +103,10 @@ class BooksViewModel @Inject constructor(
     }
 
     @LayoutRes
-    fun getGenreListData():List<Int>{
+    fun getGenreListData(): List<Int> {
         return _booksScreenState.value.genreList?.map {
             it.coverImage
-        }?: emptyList()
+        } ?: emptyList()
     }
 
     fun fetchFilteredResults(

@@ -1,6 +1,5 @@
 package com.example.blueapp.di
 
-import com.example.blueapp.data.datasource.BooksDataSource
 import com.example.blueapp.domain.repository.BooksRepository
 import com.example.blueapp.domain.usecase.FetchBooksUseCase
 import com.example.blueapp.domain.usecase.GetBooksInsightsUseCase
@@ -16,16 +15,16 @@ import kotlinx.coroutines.Dispatchers
 object AppModule {
 
     @Provides
-    fun ProvideFetchBooksUseCase(
+    fun provideFetchBooksUseCase(
         booksRepository: BooksRepository
-    ):FetchBooksUseCase{
+    ): FetchBooksUseCase {
         return FetchBooksUseCase(
             booksRepository = booksRepository
         )
     }
 
     @Provides
-    fun ProvideGetBooksInsightsUseCase():GetBooksInsightsUseCase{
+    fun provideGetBooksInsightsUseCase(): GetBooksInsightsUseCase {
         return GetBooksInsightsUseCase(Dispatchers.Default)
     }
 }

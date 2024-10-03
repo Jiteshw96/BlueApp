@@ -65,6 +65,7 @@ dependencies {
     testImplementation(libs.junit)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.splash.screen)
     implementation(libs.hilt.android)
     implementation(libs.androidx.ui.tooling.preview)
     androidTestImplementation(libs.androidx.junit)

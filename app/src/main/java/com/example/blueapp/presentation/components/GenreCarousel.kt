@@ -42,7 +42,10 @@ fun GenreCarousel(@LayoutRes carouselItems: List<Int>, pagerState: PagerState) {
 @Composable
 fun PreviewGenreCarousel() {
     GenreCarousel(
-        carouselItems = listOf(R.drawable.ic_launcher_background, R.drawable.ic_launcher_background),
+        carouselItems = listOf(
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background
+        ),
         pagerState = rememberPagerState(initialPage = 0,
             pageCount = {
                 2

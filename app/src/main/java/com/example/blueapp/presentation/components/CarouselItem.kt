@@ -23,7 +23,7 @@ import com.example.blueapp.R
 fun CarouselImage(@DrawableRes resourceId: Int) {
     Box(
         modifier = Modifier
-            .padding(horizontal = 20.dp)
+            .padding(horizontal = dimensionResource(id = R.dimen.dp_10))
             .clip(shape = RoundedCornerShape(dimensionResource(id = R.dimen.dp_16)))
             .fillMaxSize(),
     ) {
