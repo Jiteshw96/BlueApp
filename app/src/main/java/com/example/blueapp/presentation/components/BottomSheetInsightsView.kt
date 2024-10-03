@@ -2,7 +2,7 @@ package com.example.blueapp.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,26 +30,26 @@ fun BottomSheetInsightsView(
     modalState: SheetState,
 ) {
 
-    when {
+    ModalBottomSheet(
+        modifier = Modifier.fillMaxSize(),
+        onDismissRequest = { onDismiss() },
+        sheetState = modalState,
+        dragHandle = { BottomSheetDefaults.DragHandle() },
+        containerColor = LocalCustomColorPalette.current.screenBackground
+    ) {
+        when {
+            bottomSheetDetailsState.isBottomSheetLoading -> {
+                BlueAppLoader()
+            }
 
-        bottomSheetDetailsState.isBottomSheetLoading -> {
-            BlueAppLoader()
-        }
-
-        bottomSheetDetailsState.bottomSheetData != null -> {
-            val bottomSheetData = bottomSheetDetailsState.bottomSheetData
-            ModalBottomSheet(
-                modifier = Modifier.height(dimensionResource(id = R.dimen.dp_40)),
-                onDismissRequest = { onDismiss() },
-                sheetState = modalState,
-                dragHandle = { BottomSheetDefaults.DragHandle() },
-                containerColor = LocalCustomColorPalette.current.screenBackground
-            ) {
+            bottomSheetDetailsState.bottomSheetData != null -> {
+                val bottomSheetData = bottomSheetDetailsState.bottomSheetData
                 Column(
-                    modifier = Modifier.padding(
-                        top = dimensionResource(id = R.dimen.dp_32),
-                        start = dimensionResource(id = R.dimen.dp_16)
-                    )
+                    modifier = Modifier
+                        .padding(
+                            top = dimensionResource(id = R.dimen.dp_32),
+                            start = dimensionResource(id = R.dimen.dp_16)
+                        )
                 ) {
                     Row {
                         Text(

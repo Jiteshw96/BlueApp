@@ -81,6 +81,7 @@ fun SearchInputField(
                         contentDescription = null,
                         modifier = Modifier.clickable {
                             onSearchCallback("")
+                            inputQuery.value = ""
                             keyboardController?.hide()
                         },
                         tint = LocalCustomColorPalette.current.darkGrey

@@ -1,5 +1,7 @@
 package com.example.blueapp.presentation.ui.books
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -14,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.blueapp.presentation.activity.BooksViewModel
@@ -68,38 +71,43 @@ fun BooksScreen(
 
 
     Scaffold(
+        modifier = Modifier
+            .fillMaxSize(),
         floatingActionButton = {
             FloatingButton {
+                showBottomSheet = true
                 booksViewModel.getBooksInsightsData(pagerState.currentPage)
             }
         },
         floatingActionButtonPosition = FabPosition.End
     ) { inset ->
 
-        when {
-            !bookScreenState.genreList.isNullOrEmpty() -> {
-                GenreList(
-                    genreList = bookScreenState.genreList ?: emptyList(),
-                    booksList = booksList,
-                    searchQuery = booksViewModel.searchQuery.value,
-                    padding = inset,
-                    pagerState = pagerState
-                ) { query ->
+        Column(Modifier.fillMaxSize()) {
+            when {
+                !bookScreenState.genreList.isNullOrEmpty() -> {
+                    GenreList(
+                        genreList = bookScreenState.genreList ?: emptyList(),
+                        booksList = booksList,
+                        searchQuery = booksViewModel.searchQuery.value,
+                        padding = inset,
+                        pagerState = pagerState
+                    ) { query ->
 
-                    booksViewModel.searchQuery.value = query
-                    booksViewModel.fetchFilteredResults(
-                        pagerState.currentPage,
-                        query
-                    )
+                        booksViewModel.searchQuery.value = query
+                        booksViewModel.fetchFilteredResults(
+                            pagerState.currentPage,
+                            query
+                        )
+                    }
                 }
-            }
 
-            bookScreenState.genreList?.isEmpty() == true -> {
-                NoDataFound()
-            }
+                bookScreenState.genreList?.isEmpty() == true -> {
+                    NoDataFound()
+                }
 
-            bookScreenState.isPageLoading -> {
-                BlueAppLoader()
+                bookScreenState.isPageLoading -> {
+                    BlueAppLoader()
+                }
             }
         }
 
