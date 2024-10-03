@@ -1,7 +1,6 @@
 package com.example.blueapp.presentation.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -17,7 +16,6 @@ import androidx.compose.ui.res.dimensionResource
 import com.example.blueapp.R
 import com.example.blueapp.data.model.Book
 import com.example.blueapp.data.model.Genre
-import com.example.blueapp.presentation.theme.LocalCustomColorPalette
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -32,7 +30,6 @@ fun GenreList(
 
     LazyColumn(
         modifier = Modifier
-            .background(LocalCustomColorPalette.current.screenBackground)
             .padding(
                 top = padding.calculateTopPadding(),
                 bottom = padding.calculateBottomPadding()

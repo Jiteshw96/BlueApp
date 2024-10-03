@@ -1,5 +1,6 @@
 package com.example.blueapp.presentation.ui.books
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.rememberPagerState
@@ -25,6 +26,7 @@ import com.example.blueapp.presentation.components.BottomSheetInsightsView
 import com.example.blueapp.presentation.components.FloatingButton
 import com.example.blueapp.presentation.components.GenreList
 import com.example.blueapp.presentation.components.NoDataFound
+import com.example.blueapp.presentation.theme.LocalCustomColorPalette
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +61,7 @@ fun BooksScreen(
             if (booksViewModel.searchQuery.value.isNotEmpty()) {
                 filterList
             } else {
-               booksViewModel.getBooksForSelectedGenre(pagerState.currentPage)
+                booksViewModel.getBooksForSelectedGenre(pagerState.currentPage)
             }
         }
     }
@@ -82,7 +84,11 @@ fun BooksScreen(
         floatingActionButtonPosition = FabPosition.End
     ) { inset ->
 
-        Column(Modifier.fillMaxSize()) {
+        Column(
+            Modifier
+                .fillMaxSize()
+                .background(LocalCustomColorPalette.current.screenBackground)
+        ) {
             when {
                 !bookScreenState.genreList.isNullOrEmpty() -> {
                     GenreList(
