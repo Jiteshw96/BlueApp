@@ -38,8 +38,8 @@ fun SearchInputField(
     onSearchCallback: (String) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    val inputQuery = remember {
-        derivedStateOf { searchQuery }
+    var inputQuery = remember {
+        mutableStateOf(searchQuery)
     }
     Column(
         modifier = Modifier
@@ -50,6 +50,7 @@ fun SearchInputField(
             value = inputQuery.value,
             textStyle = MaterialTheme.typography.titleMedium,
             onValueChange = { input ->
+                inputQuery.value = input
                 onSearchCallback(input)
             },
             modifier = Modifier

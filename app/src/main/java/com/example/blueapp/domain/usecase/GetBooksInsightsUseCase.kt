@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GetBooksInsightsUseCase @Inject constructor(
+class GetBooksInsightsUseCase(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) {
 

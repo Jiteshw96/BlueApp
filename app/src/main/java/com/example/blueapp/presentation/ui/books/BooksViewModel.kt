@@ -77,7 +77,7 @@ class BooksViewModel @Inject constructor(
         }
     }
 
-    private fun getBooksForSelectedGenre(index:Int):List<Book>{
+    fun getBooksForSelectedGenre(index:Int):List<Book>{
         return _booksScreenState.value.genreList?.get(index)?.books?: emptyList()
     }
 

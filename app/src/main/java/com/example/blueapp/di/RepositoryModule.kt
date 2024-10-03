@@ -13,3 +13,4 @@ abstract class RepositoryModule {
     @Binds
     abstract fun provideCarouselRepository(booksRepository: BooksRepositoryImp): BooksRepository
 }
+

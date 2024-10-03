@@ -56,7 +56,7 @@ fun BooksScreen(
             if (booksViewModel.searchQuery.value.isNotEmpty()) {
                 filterList
             } else {
-                booksViewModel?.getBooksInsightsData(pagerState.currentPage) ?: emptyList()
+               booksViewModel.getBooksForSelectedGenre(pagerState.currentPage)
             }
         }
     }
@@ -70,7 +70,7 @@ fun BooksScreen(
     Scaffold(
         floatingActionButton = {
             FloatingButton {
-
+                booksViewModel.getBooksInsightsData(pagerState.currentPage)
             }
         },
         floatingActionButtonPosition = FabPosition.End
@@ -86,7 +86,7 @@ fun BooksScreen(
                     pagerState = pagerState
                 ) { query ->
 
-                    booksViewModel.searchQuery.value = ""
+                    booksViewModel.searchQuery.value = query
                     booksViewModel.fetchFilteredResults(
                         pagerState.currentPage,
                         query
