@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.blueapp.data.model.Book
-import com.example.blueapp.domain.usecase.FetchBooksUseCase
+import com.example.blueapp.domain.usecase.FetchBookGenreUseCase
 import com.example.blueapp.domain.usecase.GetBooksInsightsUseCase
 import com.example.blueapp.domain.utils.Resource
 import com.example.blueapp.presentation.models.BooksInsights
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BooksViewModel @Inject constructor(
-    private val fetchBooksUseCase: FetchBooksUseCase,
+    private val fetchBookGenreUseCase: FetchBookGenreUseCase,
     private val getBooksInsightsUseCase: GetBooksInsightsUseCase
 ) : ViewModel() {
 
@@ -56,7 +56,7 @@ class BooksViewModel @Inject constructor(
     fun fetchBooks() {
         _booksScreenState.value = _booksScreenState.value.copy(isPageLoading = true)
         viewModelScope.launch {
-            val response = fetchBooksUseCase()
+            val response = fetchBookGenreUseCase()
             when (response) {
                 is Resource.Success -> {
                     _booksScreenState.value = _booksScreenState.value.copy(

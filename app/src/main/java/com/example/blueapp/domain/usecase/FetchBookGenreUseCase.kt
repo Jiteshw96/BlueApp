@@ -6,11 +6,11 @@ import com.example.blueapp.domain.repository.BooksRepository
 import com.example.blueapp.domain.utils.Resource
 import javax.inject.Inject
 
-class FetchBooksUseCase @Inject constructor(private val booksRepository: BooksRepository) {
+class FetchBookGenreUseCase @Inject constructor(private val booksRepository: BooksRepository) {
 
     suspend operator fun invoke(): Resource<List<Genre>> {
         return try {
-            val booksCatalogue = booksRepository.fetchBooksCatalogue()
+            val booksCatalogue = booksRepository.loadBookGenreCatalog()
             Resource.Success(booksCatalogue)
         } catch (exception: Exception) {
             Resource.Error(message = R.string.no_data_found)

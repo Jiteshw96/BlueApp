@@ -53,6 +53,7 @@ fun BottomSheetInsightsView(
                 ) {
                     Row {
                         Text(
+                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.dp_3)),
                             text = stringResource(id = R.string.number_of_items),
                             style = MaterialTheme.typography.headlineLarge
                         )
@@ -72,9 +73,9 @@ fun BottomSheetInsightsView(
                         repeat(bottomSheetData.characters.size) { index ->
                             Row(Modifier.padding(top = dimensionResource(id = R.dimen.dp_8))) {
                                 Text(
-                                    text = stringResource(id = R.string.bullet_symbol).plus(
-                                        bottomSheetData.characters[index].first.toString()
-                                            .plus(stringResource(id = R.string.colon_symbol))
+                                    text = stringResource(id = R.string.bullet_symbol).plus(" ").plus(
+                                        bottomSheetData.characters[index].first.toString().plus(" ")
+                                            .plus(stringResource(id = R.string.colon_symbol)).plus(" ")
                                     ),
                                     style = MaterialTheme.typography.bodyLarge
                                 )
