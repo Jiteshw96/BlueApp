@@ -43,7 +43,7 @@ class BooksActivity : AppCompatActivity() {
         installSplashScreen()
         initDataBinding()
         attachObserver()
-        fetchGenreData()
+        getBookGenreData()
         setUpClickListener()
     }
 
@@ -100,8 +100,8 @@ class BooksActivity : AppCompatActivity() {
     }
 
 
-    private fun fetchGenreData() {
-        viewModel.fetchBooks()
+    private fun getBookGenreData() {
+        viewModel.fetchBookGenreCatalog()
     }
 
     private fun setBooksAdapterData() {

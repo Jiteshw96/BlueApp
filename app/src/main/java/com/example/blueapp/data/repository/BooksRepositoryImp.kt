@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class BooksRepositoryImp @Inject constructor() : BooksRepository {
 
-    override suspend fun fetchBooksCatalogue(): List<Genre> {
+    override suspend fun loadBookGenreCatalog(): List<Genre> {
             return BooksDataSource.genreList
     }
 }

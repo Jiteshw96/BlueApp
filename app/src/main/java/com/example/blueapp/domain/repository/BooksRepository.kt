@@ -5,6 +5,6 @@ import com.example.blueapp.data.model.Genre
 
 interface BooksRepository {
 
-    suspend fun fetchBooksCatalogue(): List<Genre>
+    suspend fun loadBookGenreCatalog(): List<Genre>
 
 }

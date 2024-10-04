@@ -1,7 +1,7 @@
 package com.example.blueapp.di
 
 import com.example.blueapp.domain.repository.BooksRepository
-import com.example.blueapp.domain.usecase.FetchBooksUseCase
+import com.example.blueapp.domain.usecase.FetchBookGenreUseCase
 import com.example.blueapp.domain.usecase.GetBooksInsightsUseCase
 import dagger.Module
 import dagger.Provides
@@ -15,10 +15,10 @@ import kotlinx.coroutines.Dispatchers
 object AppModule {
 
     @Provides
-    fun provideFetchBooksUseCase(
+    fun provideFetchBookGenreUseCase(
         booksRepository: BooksRepository
-    ):FetchBooksUseCase{
-        return FetchBooksUseCase(
+    ):FetchBookGenreUseCase{
+        return FetchBookGenreUseCase(
             booksRepository = booksRepository
         )
     }
