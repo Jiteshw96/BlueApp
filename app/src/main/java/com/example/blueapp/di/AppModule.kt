@@ -1,11 +1,8 @@
 package com.example.blueapp.di
 
-import com.example.blueapp.data.datasource.BooksDataSource
-import com.example.blueapp.data.repository.BooksRepositoryImp
 import com.example.blueapp.domain.repository.BooksRepository
 import com.example.blueapp.domain.usecase.FetchBooksUseCase
 import com.example.blueapp.domain.usecase.GetBooksInsightsUseCase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 object AppModule {
 
     @Provides
-    fun ProvideFetchBooksUseCase(
+    fun provideFetchBooksUseCase(
         booksRepository: BooksRepository
     ):FetchBooksUseCase{
         return FetchBooksUseCase(
@@ -27,7 +24,7 @@ object AppModule {
     }
 
     @Provides
-    fun ProvideGetBooksInsightsUseCase():GetBooksInsightsUseCase{
+    fun provideGetBooksInsightsUseCase():GetBooksInsightsUseCase{
         return GetBooksInsightsUseCase(Dispatchers.Default)
     }
 }
