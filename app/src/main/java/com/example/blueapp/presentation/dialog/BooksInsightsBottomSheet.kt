@@ -113,6 +113,6 @@ class BooksInsightsBottomSheet() : BottomSheetDialogFragment() {
     }
 
     private fun setTitle(title:String):String =
-        context?.getString(R.string.bullet_symbol).plus(title.plus(context?.getString(R.string.colon_symbol)))
+        context?.getString(R.string.bullet_symbol).plus(" ").plus(title.plus(context?.getString(R.string.colon_symbol)))
 
 }
